@@ -1,5 +1,7 @@
 package company;
 
+import company.data.DAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -11,8 +13,19 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
-        Cookie usernameCookie = new Cookie("username",username);
-        resp.addCookie(usernameCookie);
-        resp.sendRedirect("home.jsp");
+        String password = req.getParameter("password");
+        if(DAO.getInstance().login(username,password,"users")){
+            Cookie usernameCookie = new Cookie("username",username);
+            Cookie firstNameCookie = new Cookie("first_name",DAO.getInstance().getFirstName(username,"users"));
+            Cookie lastNameCookie = new Cookie("last_name",DAO.getInstance().getFirstName(username,"users"));
+            resp.addCookie(usernameCookie);
+            resp.addCookie(firstNameCookie);
+            resp.addCookie(lastNameCookie);
+            resp.sendRedirect("home.jsp");
+        }else {
+            resp.setStatus(403);
+            resp.sendRedirect("index.jsp");
+        }
+
     }
 }

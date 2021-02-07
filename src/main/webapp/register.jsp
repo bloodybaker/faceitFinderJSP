@@ -8,6 +8,11 @@
     <title>Registration</title>
 </head>
 <body>
+<%
+    if(session.getAttribute("username") != null){
+        response.sendRedirect("home.jsp");
+    }
+%>
 <h2>Anti Covid-19</h2>
 <div class="container" id="container">
     <div class="form-container sign-in-container">

@@ -16,7 +16,6 @@ public class Register extends HttpServlet{
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-
         if(!first_name.isEmpty() && !last_name.isEmpty() && !username.isEmpty() &&
                 !password.isEmpty())
         {

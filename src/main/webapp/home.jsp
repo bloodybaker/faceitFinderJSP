@@ -1,4 +1,4 @@
-<%--
+<%@ page import="company.data.DAO" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 07-Feb-21
@@ -11,6 +11,12 @@
     <title>Title</title>
 </head>
 <body>
-
+<%
+    if(session.getAttribute("username") == null){
+        response.sendRedirect("index.jsp");
+    }
+%>
+<h1>Welcome,<%=session.getAttribute("first_name")%> <%= session.getAttribute("last_name")%> </h1>
+<a href="logout.jsp"> Log out</a>
 </body>
 </html>
