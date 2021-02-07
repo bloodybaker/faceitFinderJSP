@@ -11,12 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<%
-    if(session.getAttribute("username") == null){
-        response.sendRedirect("index.jsp");
-    }
-%>
-<h1>Welcome,<%=session.getAttribute("first_name")%> <%= session.getAttribute("last_name")%> </h1>
+
+<h1>Welcome, ${cookie['first_name'].value} ${cookie['last_name'].value} </h1>
 <a href="logout.jsp"> Log out</a>
 </body>
 </html>
