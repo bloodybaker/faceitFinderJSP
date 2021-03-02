@@ -16,13 +16,13 @@
 <h2>Anti Covid-19</h2>
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-        <form action="company.Register" method="post">
+        <form action="company.controller.auth.Register" method="post">
             <h1>Create Account</h1>
             <input type="text" required placeholder="First name" name="first_name" />
             <input type="text"required placeholder="Last name" name="last_name" />
             <input type="text"required placeholder="Username" name="username" />
             <input type="password"required placeholder="Password" name="password" />
-            <button>Sign Up</button>
+            <a href="index.jsp"><button>Sign Up</button> </a>
         </form>
     </div>
     <div class="overlay-container">
