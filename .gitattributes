@@ -1,1 +1,2 @@
-*.CSS linguist-language=Java
+*.css linguist-detectable=false
+*.java linguist-detectable=true
