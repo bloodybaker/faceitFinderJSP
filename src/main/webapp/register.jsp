@@ -13,7 +13,7 @@
         response.sendRedirect("home.jsp");
     }
 %>
-<h2>Anti Covid-19</h2>
+<h2>Registration</h2>
 <div class="container" id="container">
     <div class="form-container sign-in-container">
         <form action="company.controller.auth.Register" method="post">

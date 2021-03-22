@@ -1,3 +1,6 @@
+<%@ page import="company.controller.api.FaceitAPIController" %>
+<%@ page import="company.model.beans.FaceitUser" %>
+<%@ page import="company.model.parsers.ParserJSON" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,8 +15,17 @@
     if(session.getAttribute("username") != null){
         response.sendRedirect("home.jsp");
     }
+    FaceitUser faceitUser;
+    try {
+        //faceitUser = FaceitAPIController.faceitAPIController().getUser("Senior_Java");
+        //System.out.println(faceitUser.getNickname());
+        //System.out.println(faceitUser.getAvatarURL());
+        FaceitAPIController.faceitAPIController().championshipsViewer().forEach(System.out::println);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 %>
-<h2>Anti Covid-19</h2>
+<h2>Login</h2>
 <div class="container" id="container">
     <div class="form-container sign-in-container">
         <form action="company.controller.auth.Login" method="post">
