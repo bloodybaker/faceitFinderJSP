@@ -12,6 +12,37 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="resources/front.css">
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#button').click(function() {
+                $.ajax({
+                    type : 'GET',
+                    headers : {
+                        Accept : "application/json; charset=utf-8",
+                        "Content-Type" : "application/json; charset=utf-8"
+                    },
+                    url : 'finder',
+                    data: {
+                        "name": document.getElementById('name').value
+                    },
+
+
+                    success : function (responseText) {
+                    $("#nickname").text(responseText[0].nickname);
+                    $("#avatar").attr('src', responseText[1].avatarURL);
+                    $("#country").text(responseText[2].country);
+                    $("#skill").text(responseText);
+                    $("#elo").text(responseText);
+                    $("#playername").text(responseText);
+                    $("#language").text(responseText);
+                }
+                });
+            });
+        });
+    </script>
+
 </head>
 <body>
 <style>
@@ -47,10 +78,19 @@
     </ul>
 </header>
 <center>
+    <form action="company.controller.routes.Finder" method="get">
     <h1 style="color:white;">Find player</h1>
-    <p style="color:white; font-size: 20px">Prize pool: $2,000,00</p>
-    <p style="color:white; font-size: 20px">Teams: TBA</p>
-    <p style="color:white; font-size: 20px">Location: <img src="resources/sweden.png"/> Stockholm, Sweden</p>
+    <p style="color:white; font-size: 20px">Input player name</p>
+    <p style="color:white; font-size: 20px"><input type="text" name="name" placeholder="username"></p>
+        <p><input type="submit" id="button" value="Get user"/></p>
+    </form>
+    <h1 style="color:white;" id="nickname"></h1>
+    <img src="" id="avatar"/>
+    <p style="color:white; font-size: 20px" id="country"></p>
+    <p style="color:white; font-size: 20px" id="skill"></p>
+    <p style="color:white; font-size: 20px" id="elo"></p>
+    <p style="color:white; font-size: 20px" id="playername"></p>
+    <p style="color:white; font-size: 20px"id="language"></p>
 
 </center>
 </body>

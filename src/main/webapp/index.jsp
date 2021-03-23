@@ -28,7 +28,7 @@
 <h2>Login</h2>
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-        <form action="company.controller.auth.Login" method="post">
+        <form action="company.controller.routes.auth.Login" method="post">
             <h1>Login</h1>
             <input type="text" required placeholder="Username" name="username" />
             <input type="password" required placeholder="Password" name="password" />

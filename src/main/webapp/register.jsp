@@ -16,7 +16,7 @@
 <h2>Registration</h2>
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-        <form action="company.controller.auth.Register" method="post">
+        <form action="company.controller.routes.auth.Register" method="post">
             <h1>Create Account</h1>
             <input type="text" required placeholder="First name" name="first_name" />
             <input type="text"required placeholder="Last name" name="last_name" />

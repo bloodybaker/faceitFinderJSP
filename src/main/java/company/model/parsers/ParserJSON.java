@@ -26,23 +26,22 @@ public class ParserJSON {
     }
 
     public List<Championship> getChampionships(String json) throws ParseException {
-        System.out.println("Championships");
         List<Championship> list = new ArrayList<>();
         Object obj = new JSONParser().parse(json);
         JSONObject jsonObject = (JSONObject) obj;
         JSONArray content = (JSONArray) jsonObject.get("items");
         Iterator i = content.iterator();
-
         while (i.hasNext()) {
             JSONObject object = (JSONObject) i.next();
+            JSONObject join = (JSONObject) object.get("join_checks");
             list.add(new Championship(
                     (String)object.get("name"),
                     (String)object.get("status"),
                     (String)object.get("region"),
                     String.valueOf((long)object.get("slots")),
                     String.valueOf((long)object.get("checkin_start")),
-                    "min",
-                    "max"
+                    String.valueOf((long)join.get("min_skill_level")),
+                    String.valueOf((long)join.get("max_skill_level"))
             ));
 
         }

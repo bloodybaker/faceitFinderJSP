@@ -5,18 +5,26 @@
          version="4.0">
     <servlet>
         <servlet-name>Register</servlet-name>
-        <servlet-class>company.controller.auth.Register</servlet-class>
+        <servlet-class>company.controller.routes.auth.Register</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
-        <url-pattern>/company.controller.auth.Register</url-pattern>
+        <url-pattern>/company.controller.routes.auth.Register</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>company.controller.auth.Login</servlet-class>
+        <servlet-class>company.controller.routes.auth.Login</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
-        <url-pattern>/company.controller.auth.Login</url-pattern>
+        <url-pattern>/company.controller.routes.auth.Login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Finder</servlet-name>
+        <servlet-class>company.controller.routes.Finder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Finder</servlet-name>
+        <url-pattern>/company.controller.routes.Finder</url-pattern>
     </servlet-mapping>
 </web-app>

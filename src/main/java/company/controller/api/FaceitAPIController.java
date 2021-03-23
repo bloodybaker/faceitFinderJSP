@@ -51,7 +51,6 @@ public class FaceitAPIController extends Constants {
          response.append(output);
       }
       in.close();
-      System.out.println("Connected");
       return parserJSON.getChampionships(response.toString());
    }
 

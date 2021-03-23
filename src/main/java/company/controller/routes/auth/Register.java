@@ -1,4 +1,4 @@
-package company.controller.auth;
+package company.controller.routes.auth;
 
 import company.model.data.DAO;
 
