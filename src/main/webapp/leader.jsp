@@ -1,5 +1,9 @@
 <%@ page import="company.model.data.DAO" %>
 <%@ page import="company.model.beans.UserBean"%>
+<%@ page import="company.model.beans.Rank" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="company.controller.api.FaceitAPIController" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,9 +18,23 @@
     <link rel="stylesheet" href="resources/front.css">
 </head>
 <body>
+<%
+    List<Rank> list = new ArrayList<>();
+    try {
+        list = FaceitAPIController.faceitAPIController().rankViewer();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
 <style>
     body {
         background-image: url('resources/background.svg');
+    }
+    table th{
+        color:#FFFFFF;
+    }
+    table td{
+        color:#FFFFFF;
     }
 </style>
 <%
@@ -47,7 +65,35 @@
     </ul>
 </header>
 
+<center>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Rank</th>>
+            <th>Nickname</th>
+            <th>Level</th>
+            <th>ELO</th>
+            <th>Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            for (Rank u : list) {
+        %>
+        <tr>
+            <td><%=u.getPosition()%></td>
+            <td><%=u.getNickname()%></td>
+            <td><%=u.getLvl()%></td>
+            <td><%=u.getFaceitElo()%></td>
+            <td><%=u.getCountry()%></td>
+        </tr>
+        <%
+            }
+        %>
 
+        </tbody>
+    </table>
+</center>
 
 <footer>
     <center>

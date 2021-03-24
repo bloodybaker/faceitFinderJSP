@@ -2,6 +2,7 @@ package company.controller.api;
 
 import company.model.beans.Championship;
 import company.model.beans.FaceitUser;
+import company.model.beans.Rank;
 import company.model.data.Constants;
 import company.model.parsers.ParserJSON;
 
@@ -52,6 +53,26 @@ public class FaceitAPIController extends Constants {
       }
       in.close();
       return parserJSON.getChampionships(response.toString());
+   }
+
+   public List<Rank> rankViewer() throws Exception{
+
+      URL url = new URL("https://open.faceit.com/data/v4/rankings/games/csgo/regions/EU?offset=0&limit=100");
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+      conn.setRequestProperty("Authorization","Bearer " + API_KEY);
+      conn.setRequestProperty("Content-Type","application/json");
+      conn.setRequestMethod("GET");
+
+      BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+      String output;
+
+      StringBuffer response = new StringBuffer();
+      while ((output = in.readLine()) != null) {
+         response.append(output);
+      }
+      in.close();
+      return parserJSON.getranks(response.toString());
    }
 
 

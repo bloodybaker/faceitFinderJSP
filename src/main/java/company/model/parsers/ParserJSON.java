@@ -2,6 +2,7 @@ package company.model.parsers;
 
 import company.model.beans.Championship;
 import company.model.beans.FaceitUser;
+import company.model.beans.Rank;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -39,13 +40,32 @@ public class ParserJSON {
             JSONObject object = (JSONObject) i.next();
             JSONObject join = (JSONObject) object.get("join_checks");
             list.add(new Championship(
-                    (String)object.get("name"),
-                    (String)object.get("status"),
-                    (String)object.get("region"),
-                    String.valueOf((long)object.get("slots")),
-                    (long)object.get("checkin_start"),
-                    String.valueOf((long)join.get("min_skill_level")),
-                    String.valueOf((long)join.get("max_skill_level"))
+                    (String) object.get("name"),
+                    (String) object.get("status"),
+                    (String) object.get("region"),
+                    String.valueOf((long) object.get("slots")),
+                    (long) object.get("checkin_start"),
+                    String.valueOf((long) join.get("min_skill_level")),
+                    String.valueOf((long) join.get("max_skill_level"))
+            ));
+
+        }
+        return list;
+    }
+    public List<Rank> getranks(String json) throws ParseException {
+        List<Rank> list = new ArrayList<>();
+        Object obj = new JSONParser().parse(json);
+        JSONObject jsonObject = (JSONObject) obj;
+        JSONArray content = (JSONArray) jsonObject.get("items");
+        Iterator i = content.iterator();
+        while (i.hasNext()) {
+            JSONObject object = (JSONObject) i.next();
+            list.add(new Rank(
+                    String.valueOf((long)object.get("position")),
+                    (String)object.get("nickname"),
+                    String.valueOf((long)object.get("game_skill_level")),
+                    String.valueOf((long)object.get("faceit_elo")),
+                    (String)object.get("country")
             ));
 
         }
