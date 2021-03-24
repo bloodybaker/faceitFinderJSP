@@ -9,7 +9,18 @@ public class FaceitUser {
     private String gamePlayerName;
     private String language;
 
-    public FaceitUser(String nickname, String avatarURL, String country, int skillLevel, int ELO, String gamePlayerName, String language) {
+    public String getSteamLink() {
+        return steamLink;
+    }
+
+    public void setSteamLink(String steamLink) {
+        this.steamLink = steamLink;
+    }
+
+    private String steamLink;
+
+    public FaceitUser(String nickname, String avatarURL, String country, int skillLevel, int ELO, String gamePlayerName,
+                      String language, String steamLink) {
         this.nickname = nickname;
         this.avatarURL = avatarURL;
         this.country = country;
@@ -17,6 +28,7 @@ public class FaceitUser {
         this.ELO = ELO;
         this.gamePlayerName = gamePlayerName;
         this.language = language;
+        this.steamLink = steamLink;
     }
 
     public String getNickname() {

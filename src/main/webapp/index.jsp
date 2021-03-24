@@ -11,20 +11,6 @@
     <title>Login</title>
 </head>
 <body>
-<%
-    if(session.getAttribute("username") != null){
-        response.sendRedirect("home.jsp");
-    }
-    FaceitUser faceitUser;
-    try {
-        //faceitUser = FaceitAPIController.faceitAPIController().getUser("Senior_Java");
-        //System.out.println(faceitUser.getNickname());
-        //System.out.println(faceitUser.getAvatarURL());
-        FaceitAPIController.faceitAPIController().championshipsViewer().forEach(System.out::println);
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-%>
 <h2>Login</h2>
 <div class="container" id="container">
     <div class="form-container sign-in-container">

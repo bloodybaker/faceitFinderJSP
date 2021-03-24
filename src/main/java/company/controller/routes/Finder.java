@@ -17,14 +17,15 @@ import java.util.List;
 public class Finder extends HttpServlet {
     private FaceitUser faceitUser;
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
+        System.out.println("Executed");
         String username = req.getParameter("name");
         try {
             faceitUser = FaceitAPIController.faceitAPIController().getUser(username);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Gson gson = new Gson();
         List<String> userdata = new ArrayList<>();
         userdata.add(faceitUser.getNickname());
         userdata.add(faceitUser.getAvatarURL());
@@ -33,9 +34,11 @@ public class Finder extends HttpServlet {
         userdata.add(String.valueOf(faceitUser.getELO()));
         userdata.add(faceitUser.getGamePlayerName());
         userdata.add(faceitUser.getLanguage());
-        PrintWriter out = response.getWriter();
-        out.print(gson.toJson(userdata));
-        out.flush();
-        out.close();
+        userdata.add(faceitUser.getSteamLink());
+
+        String json = new Gson().toJson(userdata);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
     }
 }

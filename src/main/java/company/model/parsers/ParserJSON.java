@@ -15,14 +15,18 @@ public class ParserJSON {
     public FaceitUser createSearchedUser(String json) throws ParseException {
         Object obj = new JSONParser().parse(json);
         JSONObject jo = (JSONObject) obj;
+        JSONObject temp = (JSONObject) jo.get("games");
+        JSONObject gameObj = (JSONObject) temp.get("csgo");
+        JSONObject languageObj = (JSONObject) jo.get("settings");
         return new FaceitUser(
                 (String)jo.get("nickname"),
                 (String)jo.get("avatar"),
                 (String)jo.get("country"),
-                4,
-                1490,
-                "With love",
-                "ru");
+                Math.toIntExact((Long) gameObj.get("skill_level")),
+                Math.toIntExact((Long) gameObj.get("faceit_elo")),
+                (String)gameObj.get("game_player_name"),
+                (String)languageObj.get("language"),
+                (String)gameObj.get("game_player_id"));
     }
 
     public List<Championship> getChampionships(String json) throws ParseException {
@@ -39,7 +43,7 @@ public class ParserJSON {
                     (String)object.get("status"),
                     (String)object.get("region"),
                     String.valueOf((long)object.get("slots")),
-                    String.valueOf((long)object.get("checkin_start")),
+                    (long)object.get("checkin_start"),
                     String.valueOf((long)join.get("min_skill_level")),
                     String.valueOf((long)join.get("max_skill_level"))
             ));

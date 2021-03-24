@@ -1,5 +1,9 @@
 package company.model.beans;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class Championship {
     private String name;
     private String status;
@@ -9,12 +13,16 @@ public class Championship {
     private String min;
     private String max;
 
-    public Championship(String name, String status, String region, String slots, String start, String min, String max) {
+    private Date date;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+    public Championship(String name, String status, String region, String slots, long start, String min, String max) {
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT-4"));
         this.name = name;
         this.status = status;
         this.region = region;
         this.slots = slots;
-        this.start = start;
+        this.start = sdf.format(start);
         this.min = min;
         this.max = max;
     }
